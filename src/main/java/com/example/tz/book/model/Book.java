@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,8 +17,8 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String book_name;
-    private int yearPublication;
+    private String bookName;
+    private LocalDate yearPublication;
 
     @ManyToMany
     @JoinTable(
@@ -26,8 +28,8 @@ public class Book {
     )
     private Set<Author> authors = new HashSet<>();
 
-    public Book(String book_name, int yearPublication) {
-        this.book_name = book_name;
+    public Book(String bookName, LocalDate yearPublication) {
+        this.bookName = bookName;
         this.yearPublication = yearPublication;
     }
 }
