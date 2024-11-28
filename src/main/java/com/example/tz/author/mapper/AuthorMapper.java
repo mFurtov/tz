@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public class AuthorMapper {
@@ -15,7 +16,12 @@ public class AuthorMapper {
     }
 
     public AuthorDtoResponse authorMappingToAuthorDtoResponse(Author author) {
-        return new AuthorDtoResponse(author.getId(), author.getFirstName(), author.getLastName(), author.getBirthDate());
+        List<String> bookNames = author.getBooks()
+                .stream()
+                .map(book -> book.getBookName())
+                .collect(Collectors.toList());
+
+        return new AuthorDtoResponse(author.getId(), author.getFirstName(), author.getLastName(), author.getBirthDate(), bookNames);
     }
 
     public List<AuthorDtoResponse> authorMappingToAuthorDtoResponseList(List<Author> author) {

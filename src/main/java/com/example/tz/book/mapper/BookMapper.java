@@ -1,5 +1,6 @@
 package com.example.tz.book.mapper;
 
+import com.example.tz.author.model.Author;
 import com.example.tz.book.dto.BookDtoRequest;
 import com.example.tz.book.dto.BookDtoResponse;
 import com.example.tz.book.model.Book;
@@ -7,6 +8,8 @@ import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @UtilityClass
 public class BookMapper {
@@ -15,7 +18,12 @@ public class BookMapper {
     }
 
     public BookDtoResponse bookMappingToBookDto(Book book) {
-        return new BookDtoResponse(book.getId(), book.getBookName(), book.getYearPublication());
+        Set<String> author = book.getAuthors()
+                .stream()
+                .map(a -> a.getLastName() + " " + a.getFirstName())
+                .collect(Collectors.toSet());
+
+        return new BookDtoResponse(book.getId(), book.getBookName(), book.getYearPublication(), author);
     }
 
     public List<BookDtoResponse> bookMappingToBookDtoList(List<Book> book) {

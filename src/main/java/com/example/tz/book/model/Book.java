@@ -3,7 +3,9 @@ package com.example.tz.book.model;
 import com.example.tz.author.model.Author;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +27,10 @@ public class Book {
             name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
+
     )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<Author> authors = new HashSet<>();
 
     public Book(String bookName, LocalDate yearPublication) {

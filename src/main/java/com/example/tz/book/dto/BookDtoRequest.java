@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Set;
 
 
 @Data
@@ -13,6 +14,7 @@ import java.time.format.DateTimeParseException;
 public class BookDtoRequest {
     private String bookName;
     private LocalDate yearPublication;
+    private Set<String> authors;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     public BookDtoRequest(String bookName, String yearPublication) {

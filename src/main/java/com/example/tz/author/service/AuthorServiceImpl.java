@@ -5,6 +5,8 @@ import com.example.tz.author.dto.AuthorDtoRequest;
 import com.example.tz.author.dto.AuthorDtoResponse;
 import com.example.tz.author.mapper.AuthorMapper;
 import com.example.tz.author.model.Author;
+import com.example.tz.book.dao.BookRepository;
+import com.example.tz.book.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,23 @@ import java.util.List;
 public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public AuthorDtoResponse addAuthor(AuthorDtoRequest authorDtoRequest) {
-        return AuthorMapper.authorMappingToAuthorDtoResponse(authorRepository.save(AuthorMapper.authorDtoRequestMappingToAuthor(authorDtoRequest)));
+
+        Author author = AuthorMapper.authorDtoRequestMappingToAuthor(authorDtoRequest);
+
+        if (authorDtoRequest.getBooks() != null && !authorDtoRequest.getBooks().isEmpty()) {
+            for (String bookName : authorDtoRequest.getBooks()) {
+                Book book = bookRepository.findByBookName(bookName);
+                author.getBooks().add(book);
+                book.getAuthors().add(author);
+            }
+        }
+
+        return AuthorMapper.authorMappingToAuthorDtoResponse(authorRepository.save(author));
     }
 
     @Override
@@ -38,12 +53,13 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorDtoResponse updateAuthorById(Long id, AuthorDtoRequest authorDtoRequest) {
         Author author = authorRepository.getById(id);
-        if (authorDtoRequest.getFirstName() != null && !authorDtoRequest.getFirstName().isBlank()){
+        if (authorDtoRequest.getFirstName() != null && !authorDtoRequest.getFirstName().isBlank()) {
             author.setFirstName(authorDtoRequest.getFirstName());
-        }if (authorDtoRequest.getLastName() != null && !authorDtoRequest.getLastName().isBlank()){
+        }
+        if (authorDtoRequest.getLastName() != null && !authorDtoRequest.getLastName().isBlank()) {
             author.setLastName(authorDtoRequest.getLastName());
         }
-        if (authorDtoRequest.getBirthDate() != null){
+        if (authorDtoRequest.getBirthDate() != null) {
             author.setBirthDate(authorDtoRequest.getBirthDate());
         }
         authorRepository.save(author);
