@@ -7,13 +7,16 @@ import com.example.tz.transaction.dto.TransactionDtoResponse;
 import com.example.tz.transaction.model.Transaction;
 import lombok.experimental.UtilityClass;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @UtilityClass
 public class TransactionMapper {
     public Transaction transactionDtoRequestToTransaction(TransactionDtoRequest transactionDtoRequest, Reader reader, Book book) {
-        return new Transaction(transactionDtoRequest.getOperationType(), transactionDtoRequest.getOperationDate(), reader, book);
+        Transaction transaction = new Transaction(transactionDtoRequest.getOperationType(), reader, book);
+        transaction.setOperationDate(LocalDateTime.now());
+        return transaction;
     }
 
     public TransactionDtoResponse transactionToTransactionDtoRequest(Transaction transaction) {

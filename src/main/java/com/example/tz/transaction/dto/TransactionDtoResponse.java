@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class TransactionDtoResponse {
     private Long id;
     private OperationType operationType;
-    private LocalDateTime operationDate;
+    private String operationDate;
     private Long readerId;
     private Long bookId;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
@@ -21,7 +21,7 @@ public class TransactionDtoResponse {
     public TransactionDtoResponse(Long id, OperationType operationType, LocalDateTime operationDate, Long readerId, Long bookId) {
         this.id = id;
         this.operationType = operationType;
-        this.operationDate = operationDate;
+        this.operationDate = dataFormat(operationDate);
         this.readerId = readerId;
         this.bookId = bookId;
     }

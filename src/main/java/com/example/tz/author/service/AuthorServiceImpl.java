@@ -10,6 +10,7 @@ import com.example.tz.book.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -69,5 +70,9 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void dellAuthor(Long id) {
         authorRepository.deleteById(id);
+    }
+    @Override
+    public List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate){
+        return AuthorMapper.authorMappingToAuthorDtoResponseList(authorRepository.findPopularAuthorBetweenDates(startDate,endDate));
     }
 }

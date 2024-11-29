@@ -3,6 +3,7 @@ package com.example.tz.author.service;
 import com.example.tz.author.dto.AuthorDtoRequest;
 import com.example.tz.author.dto.AuthorDtoResponse;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface AuthorService {
@@ -15,6 +16,8 @@ public interface AuthorService {
     AuthorDtoResponse getAuthorByFirstName(String firstName);
 
     AuthorDtoResponse updateAuthorById(Long id, AuthorDtoRequest authorDtoRequest);
+
+    List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate);
 
     void dellAuthor(Long id);
 

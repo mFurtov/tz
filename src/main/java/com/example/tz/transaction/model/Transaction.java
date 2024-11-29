@@ -32,9 +32,8 @@ public class Transaction {
     @JoinColumn(name = "book_id")
     private Book book;
 
-    public Transaction(OperationType operationType, LocalDateTime operationDate, Reader reader, Book book) {
+    public Transaction(OperationType operationType, Reader reader, Book book) {
         this.operationType = operationType;
-        this.operationDate = operationDate;
         this.reader = reader;
         this.book = book;
     }
