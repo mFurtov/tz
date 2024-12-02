@@ -54,7 +54,7 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public TransactionDtoResponse closeTransaction(Long id){
+    public TransactionDtoResponse closeTransaction(Long id) {
         Transaction transaction = transactionRepository.getById(id);
         transaction.setOperationType(OperationType.возврат);
         return TransactionMapper.transactionToTransactionDtoRequest(transactionRepository.save(transaction));

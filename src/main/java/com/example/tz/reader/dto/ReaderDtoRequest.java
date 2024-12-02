@@ -24,6 +24,7 @@ public class ReaderDtoRequest {
         this.gender = gender;
         this.birthDate = dataFormat(birthDate);
     }
+
     public LocalDate dataFormat(String yearPublication) {
         try {
             return LocalDate.parse(yearPublication, FORMATTER);

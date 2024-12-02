@@ -11,24 +11,24 @@ import java.util.List;
 public interface ReaderRepository extends JpaRepository<Reader, Long> {
 
     @Query("""
-        SELECT r 
-        FROM Reader r
-        JOIN Transaction t ON r.id = t.reader.id
-        WHERE t.operationType = 'взятие'
-        GROUP BY r.id
-        ORDER BY COUNT(t.id) DESC
-        LIMIT 1
-    """)
+                SELECT r 
+                FROM Reader r
+                JOIN Transaction t ON r.id = t.reader.id
+                WHERE t.operationType = 'взятие'
+                GROUP BY r.id
+                ORDER BY COUNT(t.id) DESC
+                LIMIT 1
+            """)
     Reader findTopReader();
 
     @Query("""
-        SELECT r 
-        FROM Reader r
-        JOIN Transaction t ON r.id = t.reader.id
-        WHERE t.operationType = 'взятие'
-        GROUP BY r.id
-        ORDER BY COUNT(t.id) DESC
-        LIMIT 1
-    """)
+                SELECT r 
+                FROM Reader r
+                JOIN Transaction t ON r.id = t.reader.id
+                WHERE t.operationType = 'взятие'
+                GROUP BY r.id
+                ORDER BY COUNT(t.id) DESC
+                LIMIT 1
+            """)
     List<Reader> findReadersWithUnreturnedBooks();
 }

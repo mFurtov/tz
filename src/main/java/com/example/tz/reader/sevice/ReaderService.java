@@ -18,5 +18,6 @@ public interface ReaderService {
     void deleteReader(Long id);
 
     ReaderDtoResponse getTopReader();
+
     List<ReaderDtoResponse> getTopReaderDidntReturn();
 }

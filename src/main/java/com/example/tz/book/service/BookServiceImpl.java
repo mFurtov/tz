@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService {
                 }
                 String lastName = parts[0];
                 String firstName = parts[1];
-                Author author = authorRepository.findAuthorByFullName(firstName,lastName);
+                Author author = authorRepository.findAuthorByFullName(firstName, lastName);
                 book.getAuthors().add(author);
                 author.getBooks().add(book);
             }
@@ -56,10 +56,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDtoResponse updateBookById(Long id, BookDtoRequest bookDto) {
         Book book = bookRepository.getById(id);
-        if (bookDto.getBookName() != null && !bookDto.getBookName().isBlank()){
+        if (bookDto.getBookName() != null && !bookDto.getBookName().isBlank()) {
             book.setBookName(bookDto.getBookName());
         }
-        if (bookDto.getYearPublication() != null){
+        if (bookDto.getYearPublication() != null) {
             book.setYearPublication(bookDto.getYearPublication());
         }
         bookRepository.save(book);

@@ -46,10 +46,12 @@ public class ReaderServiceImpl implements ReaderService {
         }
         return ReaderMapper.readerMappingToReaderDtoResponse(readerRepository.save(reader));
     }
+
     @Override
     public void deleteReader(Long id) {
         readerRepository.deleteById(id);
     }
+
     @Override
     public ReaderDtoResponse getTopReader() {
         return ReaderMapper.readerMappingToReaderDtoResponse(readerRepository.findTopReader());
@@ -57,6 +59,6 @@ public class ReaderServiceImpl implements ReaderService {
 
     @Override
     public List<ReaderDtoResponse> getTopReaderDidntReturn() {
-      return ReaderMapper.readerMappingToReaderDtoResponseList(readerRepository.findReadersWithUnreturnedBooks());
+        return ReaderMapper.readerMappingToReaderDtoResponseList(readerRepository.findReadersWithUnreturnedBooks());
     }
 }

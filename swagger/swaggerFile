@@ -1,0 +1,1021 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Transaction Controller",
+      "description": "Управление транзакциями в библиотеке"
+    },
+    {
+      "name": "Reader Controller",
+      "description": "Управление читателями библиотеки"
+    },
+    {
+      "name": "Author Controller",
+      "description": "Управление авторами"
+    },
+    {
+      "name": "Admin Controller",
+      "description": "Управление библиотекой для администратора"
+    },
+    {
+      "name": "Book Controller",
+      "description": "Управление книгами в библиотеке"
+    }
+  ],
+  "paths": {
+    "/library/transactions": {
+      "get": {
+        "tags": [
+          "Transaction Controller"
+        ],
+        "summary": "Получить все транзакции",
+        "description": "Возвращает список всех транзакций в библиотеке.",
+        "operationId": "getAllTransactions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transaction Controller"
+        ],
+        "summary": "Создать новую транзакцию",
+        "description": "Создаёт новую транзакцию для книги и читателя.",
+        "operationId": "addTransaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/readers": {
+      "get": {
+        "tags": [
+          "Reader Controller"
+        ],
+        "summary": "Получить всех читателей",
+        "description": "Возвращает список всех читателей библиотеки.",
+        "operationId": "getAllReaders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReaderDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reader Controller"
+        ],
+        "summary": "Добавить нового читателя",
+        "description": "Добавляет нового читателя в библиотеку.",
+        "operationId": "addReader",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReaderDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReaderDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/books": {
+      "get": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Получить список книг",
+        "description": "Возвращает список всех книг, зарегистрированных в библиотеке.",
+        "operationId": "getBook",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BookDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Добавить книгу",
+        "description": "Добавляет новую книгу в библиотеку.",
+        "operationId": "addBook",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/author": {
+      "get": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Получить всех авторов",
+        "description": "Возвращает список всех авторов, зарегистрированных в библиотеке.",
+        "operationId": "getAllAuthor",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuthorDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Добавить нового автора",
+        "description": "Добавляет нового автора в библиотеку.",
+        "operationId": "addAuthor",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/admin/transaction": {
+      "post": {
+        "tags": [
+          "Admin Controller"
+        ],
+        "summary": "Создать транзакцию",
+        "description": "Создает новую транзакцию для передачи книги от библиотеки читателю.",
+        "operationId": "makeTransaction",
+        "parameters": [
+          {
+            "name": "readerId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "bookId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/readers/{id}": {
+      "get": {
+        "tags": [
+          "Reader Controller"
+        ],
+        "summary": "Получить читателя по ID",
+        "description": "Возвращает данные читателя по указанному идентификатору.",
+        "operationId": "getReaderById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReaderDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reader Controller"
+        ],
+        "summary": "Удалить читателя",
+        "description": "Удаляет читателя из библиотеки по указанному идентификатору.",
+        "operationId": "deleteReader",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Reader Controller"
+        ],
+        "summary": "Обновить данные читателя",
+        "description": "Обновляет информацию о читателе по указанному идентификатору.",
+        "operationId": "updateReader",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReaderDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReaderDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/books/{id}": {
+      "get": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Получить книгу по ID",
+        "description": "Возвращает информацию о книге по указанному идентификатору.",
+        "operationId": "getBookById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Удалить книгу",
+        "description": "Удаляет книгу из библиотеки по указанному идентификатору.",
+        "operationId": "dellBook",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Обновить информацию о книге",
+        "description": "Обновляет данные о книге по указанному идентификатору.",
+        "operationId": "updateBookById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BookDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/author/{id}": {
+      "get": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Получить автора по ID",
+        "description": "Возвращает информацию об авторе по указанному идентификатору.",
+        "operationId": "getAuthorById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Удалить автора",
+        "description": "Удаляет автора из библиотеки по указанному идентификатору.",
+        "operationId": "dellAuthor",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Обновить информацию об авторе",
+        "description": "Обновляет информацию об авторе по указанному идентификатору.",
+        "operationId": "updateAuthorById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorDtoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/admin/close/{id}": {
+      "patch": {
+        "tags": [
+          "Admin Controller"
+        ],
+        "summary": "Закрыть транзакцию",
+        "description": "Закрывает указанную транзакцию по её идентификатору.",
+        "operationId": "closeTransaction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/transactions/{id}": {
+      "get": {
+        "tags": [
+          "Transaction Controller"
+        ],
+        "summary": "Получить транзакцию по ID",
+        "description": "Возвращает информацию о транзакции по указанному идентификатору.",
+        "operationId": "getTransactionById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Transaction Controller"
+        ],
+        "summary": "Удалить транзакцию",
+        "description": "Удаляет транзакцию по указанному идентификатору.",
+        "operationId": "deleteTransaction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/library/books/search": {
+      "get": {
+        "tags": [
+          "Book Controller"
+        ],
+        "summary": "Найти книгу по названию",
+        "description": "Возвращает книгу по указанному названию.",
+        "operationId": "getBookByName",
+        "parameters": [
+          {
+            "name": "bookname",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/author/search": {
+      "get": {
+        "tags": [
+          "Author Controller"
+        ],
+        "summary": "Найти автора по имени",
+        "description": "Возвращает автора по указанному имени.",
+        "operationId": "getAuthorByLastName",
+        "parameters": [
+          {
+            "name": "firstname",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/admin/unreturned-books": {
+      "get": {
+        "tags": [
+          "Admin Controller"
+        ],
+        "summary": "Получить читателей с не возвращёнными книгами",
+        "description": "Возвращает список читателей, которые не вернули книги в установленный срок.",
+        "operationId": "getTopReaderDidntReturn",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReaderDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/admin/top-reader": {
+      "get": {
+        "tags": [
+          "Admin Controller"
+        ],
+        "summary": "Получить самого активного читателя",
+        "description": "Возвращает читателя, который совершил наибольшее количество транзакций.",
+        "operationId": "getTopReader",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReaderDtoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/library/admin/top-author": {
+      "get": {
+        "tags": [
+          "Admin Controller"
+        ],
+        "summary": "Получить популярных авторов",
+        "description": "Возвращает список авторов, книги которых были наиболее популярны в заданный период.",
+        "operationId": "getPopularAuthor",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuthorDtoResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TransactionDtoRequest": {
+        "type": "object",
+        "properties": {
+          "operationType": {
+            "type": "string",
+            "enum": [
+              "взятие",
+              "возврат"
+            ]
+          },
+          "readerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bookId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "TransactionDtoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "operationType": {
+            "type": "string",
+            "enum": [
+              "взятие",
+              "возврат"
+            ]
+          },
+          "operationDate": {
+            "type": "string"
+          },
+          "readerId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bookId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ReaderDtoRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "М",
+              "Ж"
+            ]
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "ReaderDtoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "М",
+              "Ж"
+            ]
+          },
+          "birthDate": {
+            "type": "string"
+          }
+        }
+      },
+      "BookDtoRequest": {
+        "type": "object",
+        "properties": {
+          "bookName": {
+            "type": "string"
+          },
+          "yearPublication": {
+            "type": "string",
+            "format": "date"
+          },
+          "authors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "BookDtoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "bookName": {
+            "type": "string"
+          },
+          "yearPublication": {
+            "type": "string"
+          },
+          "authors": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AuthorDtoRequest": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "AuthorDtoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string"
+          },
+          "books": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

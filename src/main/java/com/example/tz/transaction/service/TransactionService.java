@@ -13,5 +13,6 @@ public interface TransactionService {
     TransactionDtoResponse getTransactionById(Long id);
 
     void deleteTransaction(Long id);
+
     TransactionDtoResponse closeTransaction(Long id);
 }

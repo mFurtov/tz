@@ -1,6 +1,5 @@
 package com.example.tz.book.mapper;
 
-import com.example.tz.author.model.Author;
 import com.example.tz.book.dto.BookDtoRequest;
 import com.example.tz.book.dto.BookDtoResponse;
 import com.example.tz.book.model.Book;

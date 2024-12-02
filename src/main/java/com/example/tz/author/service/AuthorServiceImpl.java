@@ -73,13 +73,14 @@ public class AuthorServiceImpl implements AuthorService {
     public void dellAuthor(Long id) {
         authorRepository.deleteById(id);
     }
+
     @Override
-    public List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate){
-            LocalDateTime startDateTime = startDate.atStartOfDay();
-            LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+    public List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate) {
+        LocalDateTime startDateTime = startDate.atStartOfDay();
+        LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
 
-            List<Author> popularAuthors = authorRepository.findPopularAuthorBetweenDates(startDateTime, endDateTime);
+        List<Author> popularAuthors = authorRepository.findPopularAuthorBetweenDates(startDateTime, endDateTime);
 
-            return AuthorMapper.authorMappingToAuthorDtoResponseList(popularAuthors);
-        }
+        return AuthorMapper.authorMappingToAuthorDtoResponseList(popularAuthors);
+    }
 }

@@ -26,7 +26,7 @@ public class AuthorMapper {
 
     public List<AuthorDtoResponse> authorMappingToAuthorDtoResponseList(List<Author> author) {
         List<AuthorDtoResponse> authorDtoResponsesList = new ArrayList<>();
-        for (Author a : author){
+        for (Author a : author) {
             authorDtoResponsesList.add(authorMappingToAuthorDtoResponse(a));
         }
         return authorDtoResponsesList;

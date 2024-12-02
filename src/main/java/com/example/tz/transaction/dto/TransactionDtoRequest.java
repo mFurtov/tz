@@ -4,11 +4,6 @@ import com.example.tz.transaction.model.OperationType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
-
 @Data
 @NoArgsConstructor
 public class TransactionDtoRequest {
