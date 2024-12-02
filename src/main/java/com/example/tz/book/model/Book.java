@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,5 +35,10 @@ public class Book {
     public Book(String bookName, LocalDate yearPublication) {
         this.bookName = bookName;
         this.yearPublication = yearPublication;
+    }
+    public Book(String bookName, LocalDate yearPublication,Set<Author> authors) {
+        this.bookName = bookName;
+        this.yearPublication = yearPublication;
+        this.authors = authors;
     }
 }

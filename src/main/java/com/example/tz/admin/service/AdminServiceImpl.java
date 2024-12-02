@@ -3,6 +3,7 @@ package com.example.tz.admin.service;
 import com.example.tz.author.dto.AuthorDtoResponse;
 import com.example.tz.author.service.AuthorService;
 import com.example.tz.reader.dto.ReaderDtoResponse;
+import com.example.tz.reader.sevice.ReaderService;
 import com.example.tz.transaction.dto.TransactionDtoRequest;
 import com.example.tz.transaction.dto.TransactionDtoResponse;
 import com.example.tz.transaction.model.OperationType;
@@ -19,11 +20,13 @@ public class AdminServiceImpl implements AdminService {
     private TransactionService transactionService;
     @Autowired
     private AuthorService authorService;
+    @Autowired
+    private ReaderService readerService;
 
 
     @Override
     public TransactionDtoResponse addTransaction(Long idReader, Long idBook) {
-        TransactionDtoRequest transactionDtoRequest = new TransactionDtoRequest(idBook,idReader, OperationType.взятие);
+        TransactionDtoRequest transactionDtoRequest = new TransactionDtoRequest(idBook, idReader, OperationType.взятие);
         return transactionService.addTransaction(transactionDtoRequest);
     }
 
@@ -34,11 +37,19 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ReaderDtoResponse getTopReader() {
-        return null;
+        return readerService.getTopReader();
     }
 
     @Override
     public List<ReaderDtoResponse> getTopReaderDidntReturn() {
-        return List.of();
+        return readerService.getTopReaderDidntReturn();
     }
+
+
+    @Override
+    public TransactionDtoResponse closeTransaction(Long id) {
+        return transactionService.closeTransaction(id);
+
+    }
+
 }

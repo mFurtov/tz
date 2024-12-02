@@ -16,4 +16,7 @@ public interface ReaderService {
     ReaderDtoResponse updateReader(Long id, ReaderDtoRequest dto);
 
     void deleteReader(Long id);
+
+    ReaderDtoResponse getTopReader();
+    List<ReaderDtoResponse> getTopReaderDidntReturn();
 }

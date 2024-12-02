@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -73,6 +75,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
     @Override
     public List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate){
-        return AuthorMapper.authorMappingToAuthorDtoResponseList(authorRepository.findPopularAuthorBetweenDates(startDate,endDate));
-    }
+            LocalDateTime startDateTime = startDate.atStartOfDay();
+            LocalDateTime endDateTime = endDate.atTime(LocalTime.MAX);
+
+            List<Author> popularAuthors = authorRepository.findPopularAuthorBetweenDates(startDateTime, endDateTime);
+
+            return AuthorMapper.authorMappingToAuthorDtoResponseList(popularAuthors);
+        }
 }

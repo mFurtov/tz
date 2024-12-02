@@ -9,12 +9,12 @@ import com.example.tz.transaction.dao.TransactionRepository;
 import com.example.tz.transaction.dto.TransactionDtoRequest;
 import com.example.tz.transaction.dto.TransactionDtoResponse;
 import com.example.tz.transaction.mapper.TransactionMapper;
+import com.example.tz.transaction.model.OperationType;
 import com.example.tz.transaction.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
@@ -51,5 +51,12 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public void deleteTransaction(Long id) {
         transactionRepository.deleteById(id);
+    }
+
+    @Override
+    public TransactionDtoResponse closeTransaction(Long id){
+        Transaction transaction = transactionRepository.getById(id);
+        transaction.setOperationType(OperationType.возврат);
+        return TransactionMapper.transactionToTransactionDtoRequest(transactionRepository.save(transaction));
     }
 }

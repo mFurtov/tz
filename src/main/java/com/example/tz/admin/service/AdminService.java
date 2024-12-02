@@ -2,6 +2,7 @@ package com.example.tz.admin.service;
 
 import com.example.tz.author.dto.AuthorDtoResponse;
 import com.example.tz.reader.dto.ReaderDtoResponse;
+import com.example.tz.transaction.dto.TransactionDtoRequest;
 import com.example.tz.transaction.dto.TransactionDtoResponse;
 
 import java.time.LocalDate;
@@ -14,4 +15,5 @@ public interface AdminService {
     List<AuthorDtoResponse> getPopularAuthor(LocalDate startDate, LocalDate endDate);
     ReaderDtoResponse getTopReader();
     List<ReaderDtoResponse> getTopReaderDidntReturn();
+    TransactionDtoResponse closeTransaction(Long id);
 }
